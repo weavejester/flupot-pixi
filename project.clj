@@ -5,7 +5,8 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.228"]
-                 [flupot "0.4.0"]]
+                 [flupot "0.4.0"]
+                 [org.clojars.haussman/react-pixi "0.5.1"]]
   :plugins [[lein-cljsbuild "1.1.3"]]
   :cljsbuild
   {:builds {:main {:source-paths ["src"]
