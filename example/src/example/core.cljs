@@ -5,12 +5,29 @@
 
 (enable-console-print!)
 
-(defn content []
-  (dom/div
-   (dom/p "Example")
-   (pixi/stage
-    {:width 400, :height 300}
-    (pixi/text {:x 100, :y 100, :text "Hello World"}))))
+(def canvas
+  (br/component
+   (fn [{:keys [rotation]}]
+     (pixi/stage
+       {:width 400, :height 300}
+       (pixi/text {:x 100, :y 100, :rotation rotation, :text "Hello World"})))))
 
-(let [app (.getElementById js/document "app")]
-  (br/mount (content) app))
+(def content
+  (br/component
+   (fn [state]
+     (dom/div
+      (dom/p "Example")
+      (canvas state)))))
+
+(defn bind [state component root]
+  (br/mount (component @state) root)
+  (add-watch state ::bind (fn [_ _ _ s] (br/mount (component s) root))))
+
+(defn animate [state]
+  (swap! state update :rotation + 0.01)
+  (js/setTimeout #(animate state) 16))
+
+(let [state (atom {:rotation 0})
+      app   (.getElementById js/document "app")]
+  (bind state content app)
+  (animate state))
