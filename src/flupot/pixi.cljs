@@ -3,4 +3,5 @@
   (:require [flupot.core :as core]
             [cljsjs.react-pixi]))
 
+(pixi/define-pixi-factories)
 (pixi/define-pixi-fns)

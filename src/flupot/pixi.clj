@@ -10,14 +10,22 @@
     bitmap-text   ReactPIXI.BitmapText
     container     ReactPIXI.DisplayObjectContainer})
 
-(defmacro define-pixi-fns []
+(defn- factory-fn [sym]
+  (symbol "flupot.pixi" (str sym "-factory")))
+
+(defmacro define-pixi-factories []
   `(do ~@(for [[sym elemf] functions]
+           `(def ~(-> sym factory-fn name symbol)
+              (React.createFactory ~elemf)))))
+
+(defmacro define-pixi-fns []
+  `(do ~@(for [[sym _] functions]
            `(core/defelement-fn ~sym
-              :elemf ~elemf))))
+              :elemf ~(factory-fn sym)))))
 
 (defmacro define-pixi-macros []
-  `(do ~@(for [[sym elemf] functions]
+  `(do ~@(for [[sym _] functions]
            `(core/defelement-macro ~sym
-              :elemf ~elemf))))
+              :elemf ~(factory-fn sym)))))
 
 (define-pixi-macros)
