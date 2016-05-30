@@ -10,7 +10,8 @@
    (fn [{:keys [rotation]}]
      (pixi/stage
        {:width 400, :height 300}
-       (pixi/text {:x 100, :y 100, :rotation rotation, :text "Hello World"})))))
+       (pixi/text {:x 100, :y 100, :rotation rotation, :text "Hello World"})
+       (pixi/sprite {:x 300, :y 100, :rotation rotation, :image "bunny.png"})))))
 
 (def content
   (br/component
