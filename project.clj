@@ -1,4 +1,4 @@
-(defproject flupot/pixi "0.1.0-SNAPSHOT"
+(defproject flupot/pixi "0.1.0"
   :description "A ClojureScript wrapper around the react-pixi library"
   :url "https://github.com/weavejester/flupot-pixi"
   :license {:name "Eclipse Public License"

@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.228"]
                  [flupot "0.4.0"]
-                 [flupot/pixi "0.1.0-SNAPSHOT"]
+                 [flupot/pixi "0.1.0"]
                  [brutha "0.2.0"]
                  [ring "1.5.0-RC1"]]
   :plugins [[lein-cljsbuild "1.1.3"]]

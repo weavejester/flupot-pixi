@@ -13,7 +13,7 @@ Flupot-Pixi is based on the [Flupot][] library.
 
 Add the following to your project `:dependencies`:
 
-    [flupot/pixi "0.1.0-SNAPSHOT"]
+    [flupot/pixi "0.1.0"]
 
 ## Usage
 
