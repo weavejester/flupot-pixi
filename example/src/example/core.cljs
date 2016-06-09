@@ -5,13 +5,23 @@
 
 (enable-console-print!)
 
+(defn- blur-filter [blur]
+  (let [filter (PIXI.filters.BlurFilter.)]
+    (set! (.-blur filter) blur)
+    filter))
+
 (def canvas
-  (br/component
-   (fn [{:keys [rotation]}]
-     (pixi/stage
-       {:width 400, :height 300}
-       (pixi/text {:x 100, :y 100, :rotation rotation, :text "Hello World"})
-       (pixi/sprite {:x 300, :y 100, :rotation rotation, :image "bunny.png"})))))
+  (let [filter (blur-filter 15)]
+    (.log js/console filter)
+    (br/component
+     (fn [{:keys [rotation]}]
+       (pixi/stage
+        {:width 400, :height 300}
+        (pixi/text {:x 100, :y 100, :rotation rotation, :text "Hello World"})
+        (pixi/sprite {:x 300, :y 100
+                      :rotation rotation
+                      :image "bunny.png"
+                      :filters [filter]}))))))
 
 (def content
   (br/component
