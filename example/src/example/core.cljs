@@ -5,23 +5,33 @@
 
 (enable-console-print!)
 
-(defn- blur-filter [blur]
-  (let [filter (PIXI.filters.BlurFilter.)]
-    (set! (.-blur filter) blur)
-    filter))
+(def silhouette-filter
+  (PIXI.AbstractFilter.
+   nil
+   "precision mediump float;
+
+   varying vec2 vTextureCoord;
+   uniform sampler2D uSampler;
+
+   void main(void) {
+       vec4 pixel = texture2D(uSampler, vTextureCoord);
+       pixel.r = 0.0;
+       pixel.g = 0.0;
+       pixel.b = 0.0;
+       gl_FragColor = pixel;
+   }"
+   #js {}))
 
 (def canvas
-  (let [filter (blur-filter 15)]
-    (.log js/console filter)
-    (br/component
-     (fn [{:keys [rotation]}]
-       (pixi/stage
-        {:width 400, :height 300}
-        (pixi/text {:x 100, :y 100, :rotation rotation, :text "Hello World"})
-        (pixi/sprite {:x 300, :y 100
-                      :rotation rotation
-                      :image "bunny.png"
-                      :filters [filter]}))))))
+  (br/component
+   (fn [{:keys [rotation]}]
+     (pixi/stage
+      {:width 400, :height 300}
+      (pixi/text {:x 100, :y 100, :rotation rotation, :text "Hello World"})
+      (pixi/sprite {:x 300, :y 100
+                    :rotation rotation
+                    :image "bunny.png"
+                    :filters [silhouette-filter]})))))
 
 (def content
   (br/component
