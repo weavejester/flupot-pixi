@@ -6,7 +6,7 @@
 (enable-console-print!)
 
 (defn outline-filter [{[w h] :size}]
-  (PIXI.AbstractFilter.
+  (PIXI.Filter.
    nil
    "precision mediump float;
 

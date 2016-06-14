@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.228"]
                  [flupot "0.4.0"]
-                 [cljsjs/react-pixi "0.8.1-0"]]
+                 [cljsjs/react-pixi "0.8.1-0" :exclusions [cljsjs/pixi]]
+                 [weavejester/pixi "4.0.0-5c77800-0"]]
   :plugins [[lein-cljsbuild "1.1.3"]]
   :cljsbuild
   {:builds {:main {:source-paths ["src"]
